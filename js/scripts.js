@@ -10,8 +10,8 @@ let elapsedTurns = 0
 // (bonus) -- how many times each player has won
 
 const winningCombos = [
-    [0, 1, 2], // i = 0, j = 0, j = 1, j =2
-    [3, 4, 5], // i = 1, j = 0, j = 1, j =2
+    [0, 1, 2], // i = 0, j = 0, j = 1, j = 2
+    [3, 4, 5], // i = 1, j = 0, j = 1, j = 2
     [6, 7, 8],
     [0, 3, 6],
     [1, 4, 7],
