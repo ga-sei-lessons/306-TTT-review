@@ -23,17 +23,24 @@ const handleResetButtonClick = function() {
 // event listener for when you click on the gameboard
 const handleGameboardClick = function(e) {
     console.log(`player just clicked on square number ${e.target.id}`)
-        // when a square is clicked we should do the following:
-        // set the innertext of the square that got clicked on of whose turn it currently it
-        // prevent repeat clicks -- check the gameboard array or check the innertext
-        // set the move into the gameboard array 
-        // check if there is a winner
-            // if someone has won, end the game and updated the message for who has won
-                // think about all the conditions to win the game and check for all of them
-            // check for cats game
-                // if every square is an x or an o and no one has won   
-                // or count turns    
-            // if no one has won, let gameplay continue (switch turns)
+    // when a square is clicked we should do the following:
+    // set the innertext of the square that got clicked on of whose turn it currently it
+    e.target.innerText = currentPlayer
+    // track the player in the array
+    gameboard[e.target.id] = currentPlayer
+    console.log(gameboard)
+    // swtich turns
+    // ternary = condition ? expression if true : expression if false
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
+    // prevent repeat clicks -- check the gameboard array or check the innertext
+    // set the move into the gameboard array 
+    // check if there is a winner
+        // if someone has won, end the game and updated the message for who has won
+            // think about all the conditions to win the game and check for all of them
+        // check for cats game
+            // if every square is an x or an o and no one has won   
+            // or count turns    
+        // if no one has won, let gameplay continue (switch turns)
 }
 
 // EVENT LISTENERS
