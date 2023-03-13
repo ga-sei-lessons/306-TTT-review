@@ -1,6 +1,6 @@
 // APP STATE (varaibles)
 // players choices (a vritual representation of the gameboard)
-let gameboard = ['', '', '', '', '', '', '', '', '']
+let gameboard = ['X', 'X', 'X', '', '', '', '', '', '']
 // whose turn it is (is it x or o)
 let currentPlayer = 'X'
 // a boolean value that tells you if the game is currently running
@@ -8,6 +8,19 @@ let gameIsActive = true
 // (optional) a turn counter that is used to detect cats games when it reaches 9
 let elapsedTurns = 0
 // (bonus) -- how many times each player has won
+
+const winningCombos = [
+    [0, 1, 2], // i = 0, j = 0, j = 1, j =2
+    [3, 4, 5], // i = 1, j = 0, j = 1, j =2
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ]
+
+console.log('2d array:', winningCombos[2][0])
 
 // DOM SELECTORS
 const gameboardDiv = document.querySelector("#gameboard")
@@ -29,25 +42,24 @@ const handleResetButtonClick = function() {
         squares[i].innerText = ''
     }
 }
+// DRY = do not repeat yourself
 
 const checkWin = function() {
-    if (gameboard[0] === currentPlayer && gameboard[1] === currentPlayer && gameboard[2] === currentPlayer) {
-        return true
-    } else if (gameboard[3] === currentPlayer && gameboard[4] === currentPlayer && gameboard[5] === currentPlayer) {
-        return true
-    } else if (gameboard[6] === currentPlayer && gameboard[7] === currentPlayer && gameboard[8] === currentPlayer) {
-        return true
-    } else if (gameboard[0] === currentPlayer && gameboard[3] === currentPlayer && gameboard[6] === currentPlayer) {
-        return true
-    } else if (gameboard[1] === currentPlayer && gameboard[4] === currentPlayer && gameboard[7] === currentPlayer) {
-        return true
-    } else if (gameboard[2] === currentPlayer && gameboard[5] === currentPlayer && gameboard[8] === currentPlayer) {
-        return true
-    } else if (gameboard[0] === currentPlayer && gameboard[4] === currentPlayer && gameboard[8] === currentPlayer) {
-        return true
-    } else if (gameboard[2] === currentPlayer && gameboard[4] === currentPlayer && gameboard[6] === currentPlayer) {
-        return true
-    }
+    for (let i = 0; i < winningCombos.length; i++) {
+        let foundWinner = true
+        for (let j = 0; j < winningCombos[i].length; j++) {
+            const gameboardIndex = winningCombos[i][j]
+            if (gameboard[gameboardIndex] !== currentPlayer) {
+                foundWinner = false
+                break
+            }
+        }
+        // if we make it here and found winner is still true, the currentPlayer has won!
+        if(foundWinner) {
+            return true
+        }
+    } 
+    // if we make it to the bottom out of the loops, nobody has won
     return false
 }
 
