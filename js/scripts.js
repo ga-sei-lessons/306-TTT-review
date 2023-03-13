@@ -1,6 +1,6 @@
 // APP STATE (varaibles)
 // players choices (a vritual representation of the gameboard)
-let gameboard = ['X', 'X', 'X', '', '', '', '', '', '']
+let gameboard = ['', '', '', '', '', '', '', '', '']
 // whose turn it is (is it x or o)
 let currentPlayer = 'X'
 // a boolean value that tells you if the game is currently running
