@@ -1,21 +1,28 @@
-console.log("hello, TTT!")
 // APP STATE (varaibles)
-    // players choices (a vritual representation of the gameboard)
-        // use an array (1d array approach) ['x', '', '', '', '', '', '', 'o', '']
-        // 2d array approach
-        // [
-        //     ['x', '', ''],
-        //     ['', '', ''],
-        //     ['', 'o', '']
-        // ]
-    // whose turn it is (is it x or o)
-    // a boolean value that tells you if the game is currently running
-    // (optional) a turn counter that is used to detect cats games when it reaches 9
-    // (bonus) -- how many times each player has won
+// players choices (a vritual representation of the gameboard)
+let gameboard = ['', '', '', '', '', '', '', '', '']
+// whose turn it is (is it x or o)
+let currentPlayer = 'X'
+// a boolean value that tells you if the game is currently running
+let gameIsActive = true
+// (optional) a turn counter that is used to detect cats games when it reaches 9
+let elapsedTurns = 0
+// (bonus) -- how many times each player has won
 
-// EVENT LISTENERS
-    // a click on the reset button
-    // event listener for when you click on the gameboard
+// DOM SELECTORS
+const gameboardDiv = document.querySelector("#gameboard")
+const messageAreaParagraph = document.querySelector("#messageArea")
+const resetButton = document.querySelector("#resetButton")
+
+// FUNCTIONS
+// a click on the reset button
+const handleResetButtonClick = function() {
+    console.log("the reset button has been clicked!")
+}
+
+// event listener for when you click on the gameboard
+const handleGameboardClick = function(e) {
+    console.log(`player just clicked on square number ${e.target.id}`)
         // when a square is clicked we should do the following:
         // set the innertext of the square that got clicked on of whose turn it currently it
         // prevent repeat clicks -- check the gameboard array or check the innertext
@@ -27,3 +34,8 @@ console.log("hello, TTT!")
                 // if every square is an x or an o and no one has won   
                 // or count turns    
             // if no one has won, let gameplay continue (switch turns)
+}
+
+// EVENT LISTENERS
+gameboardDiv.addEventListener("click", handleGameboardClick)
+resetButton.addEventListener("click", handleResetButtonClick)
