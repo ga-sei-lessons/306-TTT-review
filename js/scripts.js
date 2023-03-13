@@ -17,7 +17,17 @@ const resetButton = document.querySelector("#resetButton")
 // FUNCTIONS
 // a click on the reset button
 const handleResetButtonClick = function() {
-    console.log("the reset button has been clicked!")
+    // manually reset all values in app state to their original values
+    gameboard = ['', '', '', '', '', '', '', '', '']
+    currentPlayer = 'X'
+    gameIsActive = true
+    elapsedTurns = 0
+    // reset html values
+    messageAreaParagraph.innerText = 'Player X, make your move'
+    const squares = document.querySelectorAll(".square")
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].innerText = ''
+    }
 }
 
 const checkWin = function() {
